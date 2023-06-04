@@ -1,10 +1,14 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { getSession, signIn } from "next-auth/react";
 
 import { Input } from "@/components/Input";
 import { useForm } from "@/hooks/useForm";
 
 const AuthPage = () => {
+  const router = useRouter();
   const { onChange, form } = useForm({
     email: "",
     name: "",
@@ -19,6 +23,34 @@ const AuthPage = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, login]);
 
   return (
     <div className="relative h-full w-full bg-[url('/assets/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -38,15 +70,17 @@ const AuthPage = () => {
           >
             <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
             <div className="flex flex-col gap-4">
-              <Input
-                id={"name"}
-                onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
-                  onChange(target.value, "name")
-                }
-                value={name}
-                type="text"
-                label={"Username"}
-              />
+              {variant === "register" && (
+                <Input
+                  id={"name"}
+                  onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
+                    onChange(target.value, "name")
+                  }
+                  value={name}
+                  type="text"
+                  label={"Username"}
+                />
+              )}
               <Input
                 id={"email"}
                 onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
@@ -68,7 +102,7 @@ const AuthPage = () => {
               />
             </div>
             <button
-              onClick={undefined}
+              onClick={variant === "login" ? login : register}
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
             >
               {variant === "login" ? "Login" : "Sign up"}
