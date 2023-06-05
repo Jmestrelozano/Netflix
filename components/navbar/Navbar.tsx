@@ -12,7 +12,7 @@ import { NavbarItem } from "./NavbarItem";
 
 const TOP_OFFSET = 66;
 
-const Navbar = () => {
+export const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
@@ -108,5 +108,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
