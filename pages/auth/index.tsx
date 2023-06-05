@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { getSession, signIn } from "next-auth/react";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 import { Input } from "@/components/Input";
 import { useForm } from "@/hooks/useForm";
@@ -107,20 +109,20 @@ const AuthPage = () => {
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
-            {/* <div className="flex flex-row items-center gap-4 mt-8 justify-center">
+            <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div
-                onClick={undefined}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </div>
               <div
-                onClick={undefined}
+                onClick={() => signIn("github", { callbackUrl: "/" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FaGithub size={32} />
               </div>
-            </div> */}
+            </div>
             <p className="text-neutral-500 mt-12">
               {variant === "login"
                 ? "First time using Netflix?"
