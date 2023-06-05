@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -35,7 +36,7 @@ const AuthPage = () => {
         callbackUrl: "/",
       });
 
-      router.push("/");
+      router.push("/profiles");
     } catch (error) {
       console.log(error);
     }
@@ -111,13 +112,13 @@ const AuthPage = () => {
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div
-                onClick={() => signIn("google", { callbackUrl: "/" })}
+                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </div>
               <div
-                onClick={() => signIn("github", { callbackUrl: "/" })}
+                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FaGithub size={32} />
@@ -143,3 +144,19 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/profiles",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};
