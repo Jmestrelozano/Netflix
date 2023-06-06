@@ -1,18 +1,10 @@
 import React from "react";
 import Image from "next/image";
-
-const images = [
-  "/assets/images/profiles/default-blue.png",
-  "/assets/images/profiles/default-red.png",
-  "/assets/images/profiles/default-slate.png",
-  "/assets/images/profiles/default-green.png",
-];
-interface UserCardProps {
-  name: string;
-}
+import { UserCardProps } from "@/interfaces/components/card/cardProfile";
+import { imagesUserProfile } from "@/global/global";
 
 export const CardProfile: React.FC<UserCardProps> = ({ name }) => {
-  const imgSrc = images[Math.floor(Math.random() * 4)];
+  const imgSrc = imagesUserProfile[Math.floor(Math.random() * 4)];
 
   return (
     <div className="group flex-row w-44 mx-auto">

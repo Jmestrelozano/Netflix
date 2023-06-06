@@ -7,7 +7,7 @@ import { getSession, signIn } from "next-auth/react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
-import { Input } from "@/components/Input";
+import { Input } from "@/components/inputs/Input";
 import { useForm } from "@/hooks/useForm";
 
 const AuthPage = () => {

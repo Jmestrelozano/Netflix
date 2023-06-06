@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRouter } from "next/router";
 
-import { CardProfile } from "@/components/profiles/CardProfile";
+import { CardProfile } from "@/components/card/CardProfile";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 const ProfilesPage = () => {

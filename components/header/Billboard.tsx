@@ -9,7 +9,7 @@ export const Billboard: React.FC = () => {
   const { openModal } = useStore((store: IStoreInterface) => store);
 
   const { data } = useBillboard();
-  console.log(data);
+
   const handleOpenModal = useCallback(() => {
     openModal(data?.id);
   }, [openModal, data?.id]);

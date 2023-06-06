@@ -6,11 +6,16 @@ export default async function movieRamdon(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  try {
-    if (req.method !== "GET") {
-      return res.status(405).end();
-    }
+  switch (req.method) {
+    case "GET":
+      return ramdonMovie(req, res);
 
+    default:
+      return res.status(400).json({ message: "Bad request" });
+  }
+}
+const ramdonMovie = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
     await serverAuth(req, res);
 
     const moviesCount = await prismadb.movie.count();
@@ -25,6 +30,6 @@ export default async function movieRamdon(
   } catch (error) {
     console.log(error);
 
-    return res.status(500).end();
+    return res.status(500).json({ message: "There was a server error" });
   }
-}
+};
