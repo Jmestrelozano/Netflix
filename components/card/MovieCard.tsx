@@ -28,7 +28,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         width={100}
         height={100}
         onClick={redirectToWatch}
-        priority={false}
+        priority={true}
         src={data.thumbnailUrl}
         alt="movie"
         draggable={false}
@@ -70,7 +70,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           height={100}
           onClick={redirectToWatch}
           src={data.thumbnailUrl}
-          priority={false}
+          priority={true}
           alt="movie"
           draggable={false}
           className="

@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     domains: [
       "upload.wikimedia.org",
       "uhdtv.io",

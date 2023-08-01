@@ -2,7 +2,7 @@ import React from "react";
 
 import { isEmpty } from "lodash";
 import { Movie } from "@/interfaces";
-import { MovieCard } from "./MovieCard";
+import { MovieCard } from "../card/MovieCard";
 
 interface MovieListProps {
   data: Movie[];
