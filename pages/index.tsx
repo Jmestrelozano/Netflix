@@ -1,4 +1,4 @@
-import { signOut } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 
 import { Navbar } from "@/components/navbar/Navbar";
 import { Billboard } from "@/components/header/Billboard";
@@ -7,6 +7,8 @@ import { useMovies } from "@/hooks/useMovie";
 import { useFavorites } from "@/hooks/useFavorite";
 import { InfoModal } from "@/components/modal/InfoModal";
 import useStore, { IStoreInterface } from "@/store/store";
+import { GetServerSideProps } from "next";
+import { Layout } from "@/components/layouts/Layout";
 
 export default function HomePage() {
   const { data: movies = [] } = useMovies();
@@ -14,7 +16,7 @@ export default function HomePage() {
 
   const { isOpen, closeModal } = useStore((store: IStoreInterface) => store);
   return (
-    <>
+    <Layout title={"Pagina de inicio - Netflix"}>
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
@@ -22,6 +24,22 @@ export default function HomePage() {
         <MovieList title="Trending Now" data={movies} />
         <MovieList title="My List" data={favorites} />
       </div>
-    </>
+    </Layout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};
