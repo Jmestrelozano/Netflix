@@ -11,8 +11,8 @@ const nextConfig = {
     ],
   },
   async rewrites() {
-    // Ejecutar `prisma generate` antes de iniciar la compilación
-    execSync("npx prisma generate");
+    // Ejecutar el script para generar Prisma Client antes de iniciar la compilación
+    require("./generatePrisma.js");
     return [];
   },
 };
