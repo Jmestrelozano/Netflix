@@ -10,11 +10,6 @@ const nextConfig = {
       "download.blender.org",
     ],
   },
-  async rewrites() {
-    // Ejecutar el script para generar Prisma Client antes de iniciar la compilación
-    require("./generatePrisma.js");
-    return [];
-  },
 };
 
 module.exports = nextConfig;
