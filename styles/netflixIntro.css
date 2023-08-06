@@ -91,3 +91,14 @@ h3 {
   letter-spacing: 10px;
   overflow: hidden;
 }
+
+@media (max-width: 425px) {
+  .netflix {
+    width: 320px;
+    height: 430px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+}

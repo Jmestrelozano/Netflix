@@ -15,7 +15,7 @@ const ProfilesPage = () => {
   const { data: currentUser } = useCurrentUser();
 
   const selectProfile = useCallback(() => {
-    router.push("/");
+    router.replace("/");
   }, [router]);
 
   const onAnimationEnd = () => {
@@ -24,6 +24,7 @@ const ProfilesPage = () => {
 
   return (
     <Layout>
+
       {animationCompleted ? (
         <div className="flex items-center h-full justify-center">
           <div className="flex flex-col">
@@ -38,17 +39,13 @@ const ProfilesPage = () => {
           </div>
         </div>
       ) : (
-        <AnimationComponentNetflix onAnimationEnd={onAnimationEnd} />
+        <AnimationComponentNetflix key="animation" onAnimationEnd={onAnimationEnd} />
       )}
     </Layout>
 
   );
 };
 
-
-
-
-export default ProfilesPage;
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
@@ -64,3 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     props: {},
   };
 };
+
+
+
+export default ProfilesPage;

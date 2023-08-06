@@ -7,9 +7,10 @@ import { MovieCard } from "../card/MovieCard";
 interface MovieListProps {
   data: Movie[];
   title: string;
+  loader: boolean
 }
 
-export const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
+export const MovieList: React.FC<MovieListProps> = ({ data, title, loader }) => {
   if (isEmpty(data)) {
     return null;
   }
@@ -21,9 +22,33 @@ export const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
           {title}
         </p>
         <div className="grid grid-cols-4 gap-2">
-          {data.map((movie) => (
-            <MovieCard key={movie.id} data={movie} />
-          ))}
+          {data.map((movie) => {
+            return (
+              <>
+                {
+                  loader ? <div className="group bg-zinc-900 col-span relative h-[12vw]">
+                    <div
+                      className="
+                      animate-pulse
+                      bg-zinc-800
+                      cursor-pointer
+                      object-cover
+                      transition
+                      duration
+                      shadow-xl
+                      rounded-md
+                      group-hover:opacity-50
+                      sm:group-hover:opacity-50
+                      delay-300
+                      w-full
+                      h-[12vw]
+                    "
+                    />
+                  </div> : <MovieCard key={movie.id} data={movie} />
+                }
+              </>
+            )
+          })}
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import { GetServerSideProps } from "next";
 import { Layout } from "@/components/layouts/Layout";
 
 export default function HomePage() {
-  const { data: movies = [] } = useMovies();
+  const { data: movies = [], isLoading } = useMovies();
   const { data: favorites = [] } = useFavorites();
 
   const { isOpen, closeModal } = useStore((store: IStoreInterface) => store);
@@ -21,8 +21,8 @@ export default function HomePage() {
       <Navbar />
       <Billboard />
       <div className="pb-40">
-        <MovieList title="Trending Now" data={movies} />
-        <MovieList title="My List" data={favorites} />
+        <MovieList key={'trending'} title="Trending Now" data={movies} loader={isLoading} />
+        <MovieList key={'favorites'} title="My List" data={favorites} loader={isLoading} />
       </div>
     </Layout>
   );

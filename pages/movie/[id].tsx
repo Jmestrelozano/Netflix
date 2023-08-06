@@ -5,12 +5,13 @@ import { useMovie } from "@/hooks/useMovie";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { Layout } from "@/components/layouts/Layout";
+import { TailSpin } from "react-loader-spinner";
 
 const Watch = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data } = useMovie(id as string);
+  const { data, isLoading } = useMovie(id as string);
 
   return (
     <Layout>
@@ -26,12 +27,24 @@ const Watch = () => {
             <span className="font-light">Watching:</span> {data?.title}
           </p>
         </nav>
-        <video
-          className="h-full w-full"
-          autoPlay
-          controls
-          src={data?.videoUrl}
-        ></video>
+        {
+          isLoading ? <TailSpin
+            height="120"
+            width="120"
+            color="red"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass="w-full flex justify-center items-center h-full"
+            visible={true}
+          /> : <video
+            className="h-full w-full"
+            autoPlay
+            controls
+            src={data?.videoUrl}
+          ></video>
+        }
+
       </div>
 
     </Layout>
