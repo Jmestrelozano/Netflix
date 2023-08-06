@@ -3,10 +3,7 @@ import Image from "next/image";
 import { signOut } from "next-auth/react";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
-
-interface AccountMenuProps {
-  visible?: boolean;
-}
+import { AccountMenuProps } from "@/interfaces";
 
 export const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
   const { data: currentUser } = useCurrentUser();

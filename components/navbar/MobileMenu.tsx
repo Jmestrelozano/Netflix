@@ -1,8 +1,5 @@
+import { MobileMenuProps } from "@/interfaces";
 import React from "react";
-
-interface MobileMenuProps {
-  visible?: boolean;
-}
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
   if (!visible) {

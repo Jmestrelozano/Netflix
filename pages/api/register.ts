@@ -6,12 +6,27 @@ export default async function authRegister(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  switch (req.method) {
+    case "POST":
+      return registerUser(req, res);
+
+    default:
+      break;
+  }
+}
+const registerUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method !== "POST") {
       return res.status(405).end();
     }
 
-    const { email, name, password } = req.body;
+    const { email = "", name = "", password = "" } = req.body;
+
+    if (!email || !name || !password) {
+      return res
+        .status(400)
+        .json({ error: `is required, email - name - password` });
+    }
 
     const existingUser = await prismadb.user.findUnique({
       where: {
@@ -39,4 +54,4 @@ export default async function authRegister(
   } catch (error) {
     return res.status(400).json({ error: `Something went wrong: ${error}` });
   }
-}
+};

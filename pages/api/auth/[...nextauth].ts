@@ -5,6 +5,8 @@ import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
 import prismadb from "@/lib/prismadb";
+import jwt from "jsonwebtoken";
+import cookie from "cookie";
 
 export const authOptions: AuthOptions = {
   providers: [

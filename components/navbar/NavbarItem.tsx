@@ -1,9 +1,5 @@
+import { NavbarItemProps } from "@/interfaces";
 import React from "react";
-
-interface NavbarItemProps {
-  label: string;
-  active?: boolean;
-}
 
 export const NavbarItem: React.FC<NavbarItemProps> = ({ label, active }) => {
   return (
