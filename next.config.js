@@ -10,6 +10,11 @@ const nextConfig = {
       "download.blender.org",
     ],
   },
+  async rewrites() {
+    // Ejecutar `prisma generate` antes de iniciar la compilación
+    execSync("npx prisma generate");
+    return [];
+  },
 };
 
 module.exports = nextConfig;
