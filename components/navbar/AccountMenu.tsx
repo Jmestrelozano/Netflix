@@ -17,6 +17,7 @@ export const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
       <div className="flex flex-col gap-3">
         <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
           <Image
+            loading="lazy"
             width={80}
             height={50}
             className="w-8 rounded-md"

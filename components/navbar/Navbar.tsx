@@ -48,12 +48,13 @@ export const Navbar = () => {
           }`}
       >
         <Image
+          loading="lazy"
           width={100}
           height={50}
           draggable={false}
-          src="/assets/images/logo.png"
+          src="/assets/images/logo.webp"
           alt="Logo"
-          priority={true}
+        // priority={true}
         />
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
           <NavbarItem label="Home" active />
@@ -87,9 +88,10 @@ export const Navbar = () => {
           >
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
               <Image
+                loading="lazy"
                 width={40}
                 height={40}
-                src="/assets/images/profiles/default-blue.png"
+                src="/assets/images/profiles/default-blue.webp"
                 alt="user_profile"
               />
             </div>

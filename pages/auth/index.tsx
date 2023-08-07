@@ -1,17 +1,17 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { getSession, signIn } from "next-auth/react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
+
 
 import { Input } from "@/components/inputs/Input";
 import { useForm } from "@/hooks/useForm";
 import { Layout } from "@/components/layouts/Layout";
 import { LoaderTriangle } from "@/components/loaders/LoaderTriangle";
 import { toast } from "react-toastify";
+import { Github, Google } from "@/components/svgs";
+
 
 const AuthPage = () => {
   const router = useRouter();
@@ -92,15 +92,16 @@ const AuthPage = () => {
   return (
     <Layout>
       {loading ? <LoaderTriangle /> : <></>}
-      <div className="relative h-full w-full bg-[url('/assets/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+      <div className="relative h-full w-full bg-[url('/assets/images/hero.webp')] bg-no-repeat bg-center bg-fixed bg-cover">
         <div className="bg-black w-full h-full lg:bg-opacity-50">
           <nav className="px-12 py-5">
             <Image
+              loading="lazy"
               width={120}
               height={48}
-              src="/assets/images/logo.png"
+              src="/assets/images/logo.webp"
               alt="Logo_Netflix"
-              priority={true}
+            // priority={true}
             />
           </nav>
           <div className="flex justify-center">
@@ -152,13 +153,13 @@ const AuthPage = () => {
                   onClick={() => signIn("google", { callbackUrl: "/profiles" })}
                   className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
                 >
-                  <FcGoogle size={32} />
+                  <Google />
                 </div>
                 <div
                   onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                   className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
                 >
-                  <FaGithub size={32} />
+                  <Github />
                 </div>
               </div>
               <p className="text-neutral-500 mt-12">

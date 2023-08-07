@@ -28,7 +28,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         width={100}
         height={100}
         onClick={redirectToWatch}
-        priority={true}
+        // priority={true}
+        loading="lazy"
         src={data.thumbnailUrl}
         alt="movie"
         draggable={false}
@@ -66,11 +67,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
       "
       >
         <Image
+          loading="lazy"
           width={100}
           height={100}
           onClick={redirectToWatch}
           src={data.thumbnailUrl}
-          priority={true}
+          // priority={true}
           alt="movie"
           draggable={false}
           className="

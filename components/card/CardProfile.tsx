@@ -10,6 +10,7 @@ export const CardProfile: React.FC<UserCardProps> = ({ name }) => {
     <div className="group flex-row w-44 mx-auto">
       <div className="w-44 h-44 rounded-md flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
         <Image
+          loading="lazy"
           width={300}
           height={300}
           draggable={false}
