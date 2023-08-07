@@ -43,23 +43,24 @@ const AuthPage = () => {
         callbackUrl: "/",
       });
 
-      if (resp?.status === 200) {
+      if (resp?.status !== 200) {
         setLoading(false)
-        router.replace("/profiles");
+        toast.error(resp?.error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+
+        });
         return
       }
       console.log(resp)
       setLoading(false)
-      toast.error(resp?.error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      router.replace("/profiles");
 
-      });
     } catch (error) {
       setLoading(false)
       toast.error('Hubo un problema', {
