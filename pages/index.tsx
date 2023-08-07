@@ -1,4 +1,4 @@
-import { getSession, signOut } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 import { Navbar } from "@/components/navbar/Navbar";
 import { Billboard } from "@/components/header/Billboard";
