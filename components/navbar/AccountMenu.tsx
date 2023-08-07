@@ -21,7 +21,7 @@ export const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
             width={80}
             height={50}
             className="w-8 rounded-md"
-            src="/assets/images/profiles/default-blue.png"
+            src="/assets/images/profiles/default-blue.webp"
             alt="user_profile"
           />
           <p className="text-white text-sm group-hover/item:underline">
