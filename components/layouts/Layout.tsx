@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
 
+const origin = typeof window === "undefined" ? "" : window.location.origin;
+
 export const Layout = ({ children, title }: any) => {
     return (
         <>
@@ -13,11 +15,16 @@ export const Layout = ({ children, title }: any) => {
 
                 <meta
                     property="og:title"
-                    content={`Informacion sobre la pelicula ${title}`}
+                    content={`Netflix`}
                 />
                 <meta
                     property="og:description"
-                    content={`Esta es la pagina sobre ${title}`}
+                    content={`peliculas y series de todo tipo de genero`}
+                />
+
+                <meta
+                    property="og:image"
+                    content={`${origin}/_next/image?url=%2Fassets%2Fimages%2Fbanner.png&w=384&q=75`}
                 />
 
             </Head>
