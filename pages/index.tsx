@@ -30,11 +30,6 @@ export default function HomePage() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=31536000, stale-while-revalidate=59'
-  )
-
   const session = await getSession({ req });
 
   if (!session) {
